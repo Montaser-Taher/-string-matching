@@ -28,9 +28,17 @@ To run the C# Version of the algorithm, open up the command prompt/terminal and 
 
 To run a C# program, you will have to use the command
 ```
-csc
+csc CSharpProgram.cs
 ```
+
+In our case,
+
+```
+csc stringMatchCS.cs
+```
+
 running this make the prompt reveal a version of your installed C# Compiler.
+
 **Note: If you get an error that says "csc is not recognized  as an internal or external command". It is because you did not add your C# Compiler to the PATH environment variable.**
 
 To fix this for windows, you'll have to open the start menu and search "Edit the system environment variables". This will open a window, to which you should
