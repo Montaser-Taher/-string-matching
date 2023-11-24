@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 
 /*
 * Note: Upon compilation of this C-Sharp program, the compiler will generate an executable file (.exe) just be sure to run "csc" and then 
@@ -20,28 +21,43 @@ namespace StringMatching
       }
 
       static void StringMatch(string text, string pattern){ // Naive-Algorithm
+        Stopwatch timeRec = new Stopwatch();
+        timeRec.Start();
         int count = 0; // Pattern Index 
+        int patLength = pattern.Length;
+        int txtLength = text.Length;
 
-        for(int i = 0; i < text.Length ; i++){ // Iterate through text
-          Console.WriteLine($"Starting at index {i}");
-
-           while(count < pattern.Length){ // While not all of the pattern is compared. 
-            
-              if(text[i + count] == pattern[count]){ // Compare Nth letter of text to Nth letter of pattern
-                Console.WriteLine($"Letter {text[i + count]} matches with Pattern {pattern[count]}");
-                count++; //move on to N+1           
-
-                if(count == i){
-                  Console.WriteLine("Pattern found at Index " + (count - i));
-                }
-
-              }else{
-                Console.WriteLine("No Match");
-                count = 0; // Initial word doesn't match, reset counter and move to the next letter of the text
-                break;
-              }
-           }
+        if(patLength > txtLength){ // Validation (Pattern must never be > than Text length)
+          Console.WriteLine("Pattern length cannot exceed Text length.");
+          Console.ReadLine();
+          return;
         }
+
+
+
+        for(int i = 0; i < txtLength - 1; i++){ // Iterate through text
+          // Console.WriteLine($"Starting at index {i}"
+          count = 0; // Initiate Pattern Index to 0
+          // Console.WriteLine("Initiated new Loop" + " Count Value: " + count + " Index Value " + i );
+          
+
+          while(count < patLength){ // Perform Comparative Iteration
+            // Console.WriteLine("Comparing text " + text[i + count] + " with pat " + pattern[count]);
+            if(text[i + count] != pattern[count]){ // If 1 letter doesn't match
+              // Console.WriteLine("Breaking...");
+              break; // terminate iteration
+            }else{
+              count++; // move to (N + 1)th letter
+              if(count == patLength){ // if all pattern letters are matched
+                Console.WriteLine("Match detected at index " + i); // Indicate starting index in text
+              }
+            
+            }
+          }
+        }
+        timeRec.Stop();
+        long elapsedTime = timeRec.ElapsedMilliseconds;
+        Console.WriteLine("Whole program finished " + elapsedTime + "ms");
 
 
       }
