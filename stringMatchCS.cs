@@ -4,7 +4,8 @@ using System.Diagnostics;
 /*
 * Note: Upon compilation of this C-Sharp program, the compiler will generate an executable file (.exe) just be sure to run "csc" and then 
 * "name_of_file.exe" in the command prompt.
-*
+* 
+* The comments are debug console loggers.
 */ 
 namespace StringMatching
 {
