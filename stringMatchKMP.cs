@@ -13,12 +13,12 @@ namespace StringMatchingKMP{
           // string text = Console.ReadLine();
           Console.WriteLine("Enter a pattern to find in your text");
           string pattern = Console.ReadLine();
-          PrefixSuffixLookup(pattern);
+          LPSArrayattern);
         }
         
         
         
-        static List<int> PrefixSuffixLookup(string pattern){
+        static List<int> LPSArray(string pattern){
          
           int patLength = pattern.Length; // Pattern Length
 
@@ -53,11 +53,20 @@ namespace StringMatchingKMP{
             Console.WriteLine("Suffix - [" + string.Join(",", suffix) + "]");
 
             
+            int count = 0;
             foreach(string pElement in prefix){ // Find common suffixes and prefixes within each other
-                if(suffix.Contains(pElement)){ // if prefix element is in suffix list
-                    lps.Add(pElement.Length); // add prefix element length to lps list
-                }
+              // Console.WriteLine("Checking " + pElement);
+              if(suffix.Contains(pElement)){ // if prefix element is in suffix list
+                count = pElement.Length; // add prefix element length to count
+              }else{
+                continue; // Ignore and go to next element
+              }
             }
+            Console.WriteLine("Adding to LPS " + count);
+            lps.Add(count); // add count to LPS 
+            
+          
+
           }
 
           Console.WriteLine("[ " + string.Join(",", lps) + "]"); 
